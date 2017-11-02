@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    '01': './src/js/01.js'
+    '01': './src/js/01.js',
+    '02': './src/js/02.js'
   },
   output: {
     filename: '[name].js',
