@@ -1,11 +1,34 @@
 const path              = require('path');
+const fs                = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const basePath = './src/js/'
+const jsFiles  = fs.readdirSync(basePath)
+
+// Create an object using list of files in ./src/js 
+// => {'01': './src/js/01.js'}
+var codevemberEntries = jsFiles.reduce((entries, file) => {
+  let basename      = path.basename(file, '.js')
+  entries[basename] = path.resolve(basePath, file)
+
+  return entries
+}, {})
+
+// Create an array of HtmlWebpackPlugin to generate
+// one html file per js
+var codevemberPlugins = jsFiles.map((file) => {
+  let basename = path.basename(file, '.js')
+
+  return new HtmlWebpackPlugin({
+    template: './src/index.html', 
+    chunks: [basename],
+    title: `Codevember - 2017/11/${basename}`,
+    filename: `${basename}.html`
+  })
+})
+
 module.exports = {
-  entry: {
-    '01': './src/js/01.js',
-    '02': './src/js/02.js'
-  },
+  entry: codevemberEntries,
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
@@ -15,18 +38,5 @@ module.exports = {
       {test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader'}
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      chunks: ['01'],
-      title: 'Codevember - 2017/11/01',
-      filename: '01.html'
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      chunks: ['02'],
-      title: 'Codevember - 2017/11/02',
-      filename: '02.html'
-    })
-  ]
+  plugins: codevemberPlugins
 };
