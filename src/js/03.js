@@ -1,3 +1,5 @@
+// inspiration: https://copiercreer.wearemd.com/en/2014/02/18/noisy-machines
+
 import img from '../assets/03/chain-saw-2.svg'
 
 var chainSaw = new Image()

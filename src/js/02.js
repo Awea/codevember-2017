@@ -1,3 +1,5 @@
+// inspiration: https://copiercreer.wearemd.com/en/2017/09/10/ce-poster-est-un-faux
+
 import img from '../assets/02/20170910-ce-poster-est-un-faux-2880x3840.jpg'
 
 var posterFaux = new Image()

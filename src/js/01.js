@@ -1,3 +1,5 @@
+// inspiration: https://copiercreer.wearemd.com/en/2017/10/29/hello-sunshine
+
 import img from '../assets/01/sun-face.svg'
 
 var sunFace = new Image()
