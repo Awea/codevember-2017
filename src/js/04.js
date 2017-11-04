@@ -2,7 +2,8 @@ var canvas  = document.getElementById('c')
 var ctx     = canvas.getContext('2d');
 
 var pageY, pageX;
-var prevRotation = 0;
+var prevRotation = 3.12;
+var prevColorStop = 0.5;
 
 function fitCanvas() {
   canvas.width  = window.innerWidth
@@ -21,22 +22,25 @@ function draw() {
   // Clear canvas 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  var grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  grd.addColorStop(0, "#37c14f");
-  grd.addColorStop(1, "#e5c420");
-
   if (pageY != undefined){
-    grd.addColorStop(pageY / canvas.height, "#e5c420")
+    var colorStop = pageY / canvas.height
+
+    prevColorStop = colorStop < 0.9 ? colorStop : prevColorStop
   }
 
+  var grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+
+  grd.addColorStop(prevColorStop, "#e5c420")
+  grd.addColorStop(1, "#37c14f")
+
   var originX  = canvas.width / 2
-  var originY  = canvas.height / 2
-  var rotation = Math.atan2(pageX - originX, - (pageY - originY) )
+  var rotation = Math.atan2(pageX - originX, - pageY)
 
   ctx.save()
   rotation = isNaN(rotation) ? 0 : rotation
 
-  if (pageY >= originY){
+  // Limit rotation triggering
+  if (Math.abs(rotation) >= 2.9){
     prevRotation = rotation
   }
 
