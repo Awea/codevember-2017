@@ -42,6 +42,7 @@ function draw() {
     grd.addColorStop(1, "#000000");
 
     // Fill with gradient
+    ctx.beginPath()
     ctx.arc(pageX, pageY, 100 * mouseHold, 0, 2 * Math.PI);
 
     ctx.fillStyle = grd;
