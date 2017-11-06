@@ -35,7 +35,8 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader'}
+      {test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader'},
+      {test: /\.(frag|vert)$/, loader: 'shader-loader'}
     ]
   },
   plugins: codevemberPlugins
