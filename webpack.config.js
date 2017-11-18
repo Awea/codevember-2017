@@ -35,7 +35,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {test: /\.(png|svg|jpg|gif|mp3|woff)$/, loader: 'file-loader'},
+      {test: /\.(png|svg|jpg|gif|mp3|woff|json)$/, loader: 'file-loader'},
       {test: /\.(frag|vert)$/, loader: 'shader-loader'}
     ]
   },
