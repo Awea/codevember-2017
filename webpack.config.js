@@ -3,7 +3,7 @@ const fs                = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const basePath = './src/js/'
-const jsFiles  = fs.readdirSync(basePath)
+const jsFiles  = fs.readdirSync(basePath).filter((entry) => !entry.includes('three_modifiers'))
 
 // Create an object using list of files in ./src/js 
 // => {'01': './src/js/01.js'}
