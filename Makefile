@@ -3,10 +3,15 @@
 
 include .env
 
-serve: ## Run website on localhost:8080
+serve: ## Build everything and run website on localhost:8080
 	yarn run serve
 
 s: serve
+
+latest: ## Build latest codevember and run website on localhost:8080
+	yarn run latest
+
+l: latest
 
 deploy: ## Deploy ./dist folder on the server
 	@echo "Deploy website"
